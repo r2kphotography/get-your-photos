@@ -1,224 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <title>Mobile Flipbook</title>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/turn.min.js"></script>
+  <title>R2K Photography</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    html,body{
-      margin:0;padding:0;
-      background:#ccc;
-      height:100%;
-      font-family:sans-serif;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #000, #222);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
     }
-    #magazine{
-      width:95vw;
-      height:70vh;
-      max-width:900px;
+    .box {
+      background: rgba(0,0,0,0.8);
+      padding: 40px;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
     }
-    .turn-page{
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    button {
+      padding: 12px 25px;
+      margin-top: 15px;
+      border-radius: 25px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
     }
-    .turn-page img{
-      max-width:100%;
-      max-height:100%;
-      object-fit:contain;
+    .review {
+      background: gold;
     }
-    #controls{
-      position:fixed;
-      top:8px;
-      left:50%;
-      transform:translateX(-50%);
-      display:flex;
-      gap:8px;
-      z-index:100;
-      opacity:.4;
-      transition:opacity .3s;
-      pointer-events:none;
+    .continue {
+      background: #00ff99;
+      display: none;
     }
-    #controls.show{opacity:1;}
-    #controls button{
-      pointer-events:auto;
-      background:#000;
-      color:#fff;
-      border:none;
-      border-radius:6px;
-      padding:8px 14px;
-      font-size:14px;
-    }
-    html.fullscreen-active,
-    body.fullscreen-active{background:#000;}
-    body.fullscreen-active #magazine{max-width:none;}
   </style>
 </head>
 <body>
-  <div id="controls" class="show">
-    <button id="music-button">Play&nbsp;Music</button>
-    <button id="fullscreen-button">Fullscreen</button>
-  </div>
 
-  <audio id="bg-music" src="audio/song.mp3" loop></audio>
+<div class="box">
+  <h2>Welcome to R2K Photography 📸</h2>
+  <p>Please give us a Google Review</p>
 
-  <div id="magazine">
-    <div class="turn-page"><img src="pages/1.jpg" alt="1"></div>
-    <div class="turn-page"><img src="pages/2.jpg" alt="2"></div>
-    <div class="turn-page"><img src="pages/3.jpg" alt="3"></div>
-    <div class="turn-page"><img src="pages/4.jpg" alt="4"></div>
-    <div class="turn-page"><img src="pages/5.jpg" alt="5"></div>
-    <div class="turn-page"><img src="pages/6.jpg" alt="6"></div>
-    <div class="turn-page"><img src="pages/7.jpg" alt="7"></div> 
-    <div class="turn-page"><img src="pages/8.jpg" alt="8"></div>
-    <div class="turn-page"><img src="pages/9.jpg" alt="9"></div>
-    <div class="turn-page"><img src="pages/10.jpg" alt="10"></div>
-    <div class="turn-page"><img src="pages/11.jpg" alt="11"></div>
-    <div class="turn-page"><img src="pages/12.jpg" alt="12"></div>
-    <div class="turn-page"><img src="pages/13.jpg" alt="13"></div>
-    <div class="turn-page"><img src="pages/14.jpg" alt="14"></div> 
-    <div class="turn-page"><img src="pages/15.jpg" alt="15"></div>
-    <div class="turn-page"><img src="pages/16.jpg" alt="16"></div>
-    <div class="turn-page"><img src="pages/17.jpg" alt="17"></div>
-    <div class="turn-page"><img src="pages/18.jpg" alt="18"></div>
-    <div class="turn-page"><img src="pages/19.jpg" alt="19"></div>
-    <div class="turn-page"><img src="pages/20.jpg" alt="20"></div>
-    <div class="turn-page"><img src="pages/21.jpg" alt="21"></div>
-    <div class="turn-page"><img src="pages/22.jpg" alt="22"></div>
-    <div class="turn-page"><img src="pages/23.jpg" alt="23"></div>
-    <div class="turn-page"><img src="pages/24.jpg" alt="24"></div>
-    <div class="turn-page"><img src="pages/25.jpg" alt="25"></div>
-    <div class="turn-page"><img src="pages/26.jpg" alt="26"></div> 
-    <div class="turn-page"><img src="pages/27.jpg" alt="27"></div>
-    <div class="turn-page"><img src="pages/28.jpg" alt="28"></div>
-    <div class="turn-page"><img src="pages/29.jpg" alt="29"></div>
-    <div class="turn-page"><img src="pages/30.jpg" alt="30"></div>
-    <div class="turn-page"><img src="pages/31.jpg" alt="31"></div>
-    <div class="turn-page"><img src="pages/32.jpg" alt="32"></div>
-    <div class="turn-page"><img src="pages/33.jpg" alt="33"></div> 
-    <div class="turn-page"><img src="pages/34.jpg" alt="34"></div>
-    <div class="turn-page"><img src="pages/35.jpg" alt="35"></div>
-    <div class="turn-page"><img src="pages/36.jpg" alt="36"></div>
-    <div class="turn-page"><img src="pages/37.jpg" alt="37"></div>
-    <div class="turn-page"><img src="pages/38.jpg" alt="38"></div>
-    <div class="turn-page"><img src="pages/39.jpg" alt="39"></div>
-    <div class="turn-page"><img src="pages/40.jpg" alt="40"></div>
-    <div class="turn-page"><img src="pages/41.jpg" alt="41"></div>
-    <div class="turn-page"><img src="pages/42.jpg" alt="42"></div>
-    <div class="turn-page"><img src="pages/43.jpg" alt="43"></div>
-    <div class="turn-page"><img src="pages/44.jpg" alt="44"></div>
-    <div class="turn-page"><img src="pages/45.jpg" alt="45"></div>
-    <div class="turn-page"><img src="pages/46.jpg" alt="46"></div>
-    <div class="turn-page"><img src="pages/47.jpg" alt="47"></div>
-    <div class="turn-page"><img src="pages/48.jpg" alt="48"></div>
-    <div class="turn-page"><img src="pages/49.jpg" alt="49"></div>
+  <button class="review" onclick="openReview()">Give Review</button>
 
-  </div>
+  <br>
 
-  <script>
-    const PAGE_RATIO=18/12,SPREAD_RATIO=PAGE_RATIO*2;
-    function initFlipbook(){
-      if($('#magazine').data('turn'))$('#magazine').turn('destroy');
-      $('#magazine').turn({
-        width:$('#magazine').width(),
-        height:$('#magazine').height(),
-        autoCenter:true,
-        display:'double',
-        elevation:50,
-        gradients:true
-      });
-    }
-    function sizeSpread(){
-      const vw=innerWidth,vh=innerHeight;
-      let w=vw,h=vw/SPREAD_RATIO;
-      if(h>vh){h=vh;w=vh*SPREAD_RATIO;}
-      $('#magazine').css({width:w,height:h});
-      $('#magazine').turn('size',w,h);
-    }
-    $(function(){
-      initFlipbook();
+  <button class="continue" id="continueBtn" onclick="goNext()">
+    Continue ➜
+  </button>
+</div>
 
-      const audio=$('#bg-music')[0];
-      const musicBtn=$('#music-button');
-      function updateMusicBtn(){
-        musicBtn.text(audio.paused?'Play Music':'Stop Music');
-      }
-      updateMusicBtn();
+<script>
+  function openReview() {
+    window.open("https://g.page/r/YOUR_GOOGLE_REVIEW_LINK", "_blank");
+    document.getElementById("continueBtn").style.display = "inline-block";
+  }
 
-      musicBtn.on('click',()=>{
-        if(audio.paused){
-          audio.play().catch(()=>alert('Tap to enable audio'));
-        }else{
-          audio.pause();
-          audio.currentTime=0;
-        }
-        updateMusicBtn();
-      });
-      audio.addEventListener('ended',updateMusicBtn);
-      audio.addEventListener('pause',updateMusicBtn);
+  function goNext() {
+    window.location.href = "https://your-next-link.com";
+  }
+</script>
 
-      let startX=0;
-      $('#magazine')[0].addEventListener('touchstart',e=>startX=e.changedTouches[0].screenX);
-      $('#magazine')[0].addEventListener('touchend',e=>{
-        const endX=e.changedTouches[0].screenX;
-        if(endX-startX>50)$('#magazine').turn('previous');
-        else if(startX-endX>50)$('#magazine').turn('next');
-      });
-
-      function reqFS(){
-        const el=document.documentElement;
-        return el.requestFullscreen?.()||el.webkitRequestFullscreen?.()||el.msRequestFullscreen?.();
-      }
-      function exitFS(){
-        return document.exitFullscreen?.()||document.webkitExitFullscreen?.()||document.msExitFullscreen?.();
-      }
-      $('#fullscreen-button').on('click',()=>{
-        if(document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement){
-          exitFS();
-        }else{
-          reqFS();
-        }
-      });
-      function onFS(){
-        const fs=document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement;
-        const active=!!fs;
-        document.documentElement.classList.toggle('fullscreen-active',active);
-        document.body.classList.toggle('fullscreen-active',active);
-        if(active&&screen.orientation?.lock)screen.orientation.lock('landscape').catch(()=>{});
-        if(!active&&screen.orientation?.unlock)screen.orientation.unlock();
-        setTimeout(()=>{
-          if(active){sizeSpread();}
-          else{
-            $('#magazine').css({width:'95vw',height:'70vh'});
-            $('#magazine').turn('size',$('#magazine').width(),$('#magazine').height());
-          }
-        },100);
-      }
-      document.addEventListener('fullscreenchange',onFS);
-      document.addEventListener('webkitfullscreenchange',onFS);
-      document.addEventListener('msfullscreenchange',onFS);
-
-      window.addEventListener('resize',()=>{
-        const fs=document.fullscreenElement||document.webkitFullscreenElement||document.msFullscreenElement;
-        if(fs)sizeSpread();
-        else $('#magazine').turn('size',$('#magazine').width(),$('#magazine').height());
-      });
-
-      let hideTimer;
-      function showControls(){
-        $('#controls').addClass('show');
-        clearTimeout(hideTimer);
-        hideTimer=setTimeout(()=>$('#controls').removeClass('show'),3000);
-      }
-      showControls();
-      $(document).on('mousemove touchstart',showControls);
-    });
-  </script>
 </body>
 </html>
