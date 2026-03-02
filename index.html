@@ -2,27 +2,24 @@
 <html>
 <head>
   <title>R2K Photography</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
       background: #000;
-      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
     }
 
     body {
+      height: 100dvh; /* Mobile stable height */
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       position: relative;
       color: white;
-      padding: 20px;
-      box-sizing: border-box;
     }
 
     /* Moving Gold Background */
@@ -30,113 +27,114 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.25), transparent 40%),
-                  radial-gradient(circle at 70% 70%, rgba(255,215,0,0.15), transparent 40%);
-      animation: moveGlow 14s linear infinite;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,215,0,0.25), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,215,0,0.15), transparent 40%);
+      animation: moveGlow 12s linear infinite;
       z-index: -1;
     }
 
     @keyframes moveGlow {
       0% { transform: translate(0,0); }
-      50% { transform: translate(-8%, -8%); }
+      50% { transform: translate(-6%, -6%); }
       100% { transform: translate(0,0); }
     }
 
     .box {
+      width: 90%;
+      max-width: 380px;
       background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(14px);
-      padding: 35px 25px;
-      border-radius: 22px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+      padding: 30px 20px;
+      border-radius: 20px;
       text-align: center;
     }
 
     .logo {
-      width: 60px;
-      margin: 0 auto 18px;
-      display: block;
+      width: 55px;
+      margin-bottom: 15px;
       filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
     }
 
     h2 {
-      font-size: 22px;
-      margin: 10px 0 15px;
+      font-size: 20px;
+      margin-bottom: 12px;
     }
 
     .rating {
       color: gold;
-      font-size: 14px;
-      margin-bottom: 18px;
+      font-size: 13px;
+      margin-bottom: 15px;
     }
 
     p {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 25px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      line-height: 1.5;
     }
 
     .btn-group {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 15px;
     }
 
     button {
-      padding: 15px;
-      border-radius: 35px;
+      padding: 14px;
+      border-radius: 30px;
       border: none;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
       width: 100%;
+      cursor: pointer;
+      transition: 0.2s;
     }
 
     .review {
       background: linear-gradient(45deg, gold, #ffd700);
       color: black;
-      box-shadow: 0 0 18px rgba(255,215,0,0.7);
+      box-shadow: 0 0 15px rgba(255,215,0,0.7);
     }
 
     .tutorial {
       background: linear-gradient(45deg, #00c3ff, #0072ff);
       color: white;
-      box-shadow: 0 0 15px rgba(0,195,255,0.7);
+      box-shadow: 0 0 12px rgba(0,195,255,0.7);
     }
 
     .continue {
       background: linear-gradient(45deg, #00ff99, #00cc66);
       color: black;
       display: none;
-      box-shadow: 0 0 15px rgba(0,255,153,0.7);
+      box-shadow: 0 0 12px rgba(0,255,153,0.7);
+    }
+
+    button:active {
+      transform: scale(0.95);
     }
 
     /* Floating Buttons */
     .float-buttons {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 18px;
+      right: 18px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      z-index: 1000;
+      gap: 12px;
     }
 
     .float-btn {
-      width: 58px;
-      height: 58px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       display: flex;
-      align-items: center;
       justify-content: center;
-      transition: 0.3s;
+      align-items: center;
     }
 
     .float-btn img {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
     }
 
     .whatsapp {
@@ -146,16 +144,12 @@
 
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
-      70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+      70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
       100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
     }
 
     .instagram {
       background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
-    }
-
-    .float-btn:hover {
-      transform: scale(1.1);
     }
 
   </style>
@@ -184,12 +178,12 @@
 </div>
 
 <div class="float-buttons">
-  <a href="https://wa.me/919003771199?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
+  <a href="https://wa.me/91903771199?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
      class="float-btn whatsapp" target="_blank">
      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
   </a>
 
-  <a href="https://instagram.com/your_instagram_username"
+  <a href="https://instagram.com/r2kphotography"
      class="float-btn instagram" target="_blank">
      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
   </a>
