@@ -3,6 +3,7 @@
 <head>
   <title>R2K Photography</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     body {
       margin: 0;
@@ -15,37 +16,63 @@
       height: 100vh;
       text-align: center;
     }
+
     .box {
       background: rgba(0,0,0,0.8);
       padding: 40px;
       border-radius: 15px;
       width: 90%;
-      max-width: 400px;
+      max-width: 420px;
     }
+
+    .btn-group {
+      margin-top: 20px;
+    }
+
     button {
-      padding: 12px 25px;
-      margin-top: 15px;
+      padding: 12px 20px;
+      margin: 8px;
       border-radius: 25px;
       border: none;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
+      transition: 0.3s;
     }
+
     .review {
       background: gold;
+      color: black;
     }
+
+    .tutorial {
+      background: #00c3ff;
+      color: black;
+    }
+
     .continue {
       background: #00ff99;
+      color: black;
       display: none;
+      margin-top: 15px;
     }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
   </style>
 </head>
+
 <body>
 
 <div class="box">
   <h2>Welcome to R2K Photography 📸</h2>
   <p>Please give us a 5 ⭐⭐⭐⭐⭐ Star Google Review to continue</p>
 
-  <button class="review" onclick="openReview()">Give Review</button>
+  <div class="btn-group">
+    <button class="review" onclick="openReview()">Give Review</button>
+    <button class="tutorial" onclick="openTutorial()">Watch Tutorial</button>
+  </div>
 
   <br>
 
@@ -56,12 +83,16 @@
 
 <script>
   function openReview() {
-    window.open("https://g.page/r/CSrtOdkKuR7CEBM/review");
+    window.open("https://g.page/r/CSrtOdkKuR7CEBM/review", "_blank");
     document.getElementById("continueBtn").style.display = "inline-block";
   }
 
+  function openTutorial() {
+    window.open("https://youtube.com/", "_blank");
+  }
+
   function goNext() {
-    window.location.href = "https://ptml.in/hyw5/2ih9x ";
+    window.location.href = "https://ptml.in/hyw5/2ih9x";
   }
 </script>
 
