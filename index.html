@@ -22,7 +22,6 @@
       padding: 20px;
       box-sizing: border-box;
 
-      /* MOVING GOLD BACKGROUND */
       background: linear-gradient(
         45deg,
         #000000,
@@ -49,7 +48,6 @@
       width: 100%;
       max-width: 420px;
       text-align: center;
-      box-shadow: 0 0 40px rgba(0,0,0,0.7);
     }
 
     .logo {
@@ -58,22 +56,9 @@
       filter: drop-shadow(0 0 8px gold);
     }
 
-    h2 {
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    .rating {
-      color: gold;
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-
-    p {
-      font-size: 14px;
-      margin-bottom: 25px;
-      line-height: 1.5;
-    }
+    h2 { font-size: 22px; margin-bottom: 15px; }
+    .rating { color: gold; font-size: 14px; margin-bottom: 18px; }
+    p { font-size: 14px; margin-bottom: 25px; }
 
     .btn-group {
       display: flex;
@@ -91,30 +76,17 @@
       width: 100%;
     }
 
-    .review {
-      background: gold;
-      color: black;
-    }
+    .review { background: gold; color: black; }
+    .tutorial { background: #0072ff; color: white; }
+    .continue { background: #00cc66; color: black; display: none; }
 
-    .tutorial {
-      background: #0072ff;
-      color: white;
-    }
-
-    .continue {
-      background: #00cc66;
-      color: black;
-      display: none;
-    }
-
-    /* TOP RIGHT FLOATING BUTTONS */
+    /* TOP RIGHT ICONS */
     .float-buttons {
       position: fixed;
       top: 20px;
       right: 20px;
       display: flex;
       gap: 12px;
-      z-index: 1000;
     }
 
     .float-btn {
@@ -124,53 +96,48 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
     }
 
-    .float-btn img {
-      width: 24px;
-      height: 24px;
+    .float-btn img { width: 24px; }
+
+    .whatsapp { background: #25D366; }
+    .instagram { background: #d62976; }
+
+    /* POPUP MODAL */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      text-align: center;
+      padding: 20px;
     }
 
-    /* WHATSAPP PULSE */
-    .whatsapp {
-      background: #25D366;
+    .modal-content {
+      background: #111;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 350px;
     }
 
-    .whatsapp::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: rgba(37,211,102,0.5);
-      animation: pulseRing 2s infinite;
-      z-index: -1;
+    .stars {
+      font-size: 30px;
+      color: gold;
+      animation: starGlow 1.5s infinite alternate;
     }
 
-    @keyframes pulseRing {
-      0% {
-        transform: scale(1);
-        opacity: 0.8;
-      }
-      70% {
-        transform: scale(1.6);
-        opacity: 0;
-      }
-      100% {
-        opacity: 0;
-      }
+    @keyframes starGlow {
+      from { text-shadow: 0 0 10px gold; }
+      to { text-shadow: 0 0 20px orange; }
     }
 
-    /* INSTAGRAM GLOW */
-    .instagram {
-      background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
-      animation: instaGlow 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes instaGlow {
-      from { box-shadow: 0 0 10px #d62976; }
-      to { box-shadow: 0 0 20px #feda75; }
+    .modal button {
+      margin-top: 20px;
+      background: gold;
+      color: black;
     }
 
   </style>
@@ -179,23 +146,26 @@
 <body>
 
 <div class="box">
-
   <img src="logo.png" class="logo">
-
   <h2>Welcome to R2K Photography 📸</h2>
-
-  <div class="rating">
-    ⭐ 5.0 Rating | 1000+ Happy Clients
-  </div>
-
+  <div class="rating">⭐ 5.0 Rating | 1000+ Happy Clients</div>
   <p>Please give us a 5 ⭐⭐⭐⭐⭐ Star Google Review to continue</p>
 
   <div class="btn-group">
-    <button class="review" onclick="openReview()">Give Review</button>
+    <button class="review" onclick="showModal()">Give Review</button>
     <button class="tutorial" onclick="openTutorial()">Watch Tutorial</button>
     <button class="continue" id="continueBtn" onclick="goNext()">Continue ➜</button>
   </div>
+</div>
 
+<!-- POPUP -->
+<div class="modal" id="reviewModal">
+  <div class="modal-content">
+    <h3>Please give us 5 Stars ⭐</h3>
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    <p>Tap 5 stars on Google and submit your review ❤️</p>
+    <button onclick="openReview()">Continue to Google Review</button>
+  </div>
 </div>
 
 <div class="float-buttons">
@@ -213,8 +183,13 @@
 <script>
   let reviewClicked = false;
 
+  function showModal() {
+    document.getElementById("reviewModal").style.display = "flex";
+  }
+
   function openReview() {
     reviewClicked = true;
+    document.getElementById("reviewModal").style.display = "none";
     window.open("https://g.page/r/CSrtOdkKuR7CEBM/review", "_blank");
   }
 
