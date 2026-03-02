@@ -5,35 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      position: relative;
+      color: white;
       padding: 20px;
-      text-align: center;
-      overflow: hidden;
-      background: #000;
+      box-sizing: border-box;
     }
 
-    /* Moving Gold Glow Background */
+    /* Moving Gold Background */
     body::before {
       content: "";
       position: fixed;
-      width: 200%;
-      height: 200%;
+      inset: 0;
       background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.25), transparent 40%),
                   radial-gradient(circle at 70% 70%, rgba(255,215,0,0.15), transparent 40%);
-      animation: moveGlow 12s linear infinite;
+      animation: moveGlow 14s linear infinite;
       z-index: -1;
     }
 
     @keyframes moveGlow {
       0% { transform: translate(0,0); }
-      50% { transform: translate(-10%, -10%); }
+      50% { transform: translate(-8%, -8%); }
       100% { transform: translate(0,0); }
     }
 
@@ -45,6 +50,7 @@
       width: 100%;
       max-width: 420px;
       box-shadow: 0 0 40px rgba(0,0,0,0.7);
+      text-align: center;
     }
 
     .logo {
@@ -178,8 +184,7 @@
 </div>
 
 <div class="float-buttons">
-
-  <a href="https://wa.me/9198XXXXXXXX?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
+  <a href="https://wa.me/919003771199?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
      class="float-btn whatsapp" target="_blank">
      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
   </a>
@@ -188,11 +193,9 @@
      class="float-btn instagram" target="_blank">
      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
   </a>
-
 </div>
 
 <script>
-
   let reviewClicked = false;
 
   function openReview() {
@@ -213,7 +216,6 @@
       document.getElementById("continueBtn").style.display = "block";
     }
   });
-
 </script>
 
 </body>
