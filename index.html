@@ -13,113 +13,145 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 20px;
       text-align: center;
-      animation: fadeBody 1.5s ease-in-out;
     }
 
-    @keyframes fadeBody {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
+    /* Animated Gold Border */
     .box {
+      position: relative;
+      padding: 35px 25px;
+      border-radius: 22px;
+      width: 100%;
+      max-width: 420px;
       background: rgba(255,255,255,0.05);
       backdrop-filter: blur(14px);
-      padding: 50px 40px 45px 40px;
-      border-radius: 25px;
-      width: 90%;
-      max-width: 430px;
-      border: 1px solid rgba(255,215,0,0.3);
-      box-shadow: 0 0 25px rgba(255,215,0,0.2);
-      animation: slideUp 1.2s ease-out;
-      position: relative;
+      overflow: hidden;
     }
 
-    @keyframes slideUp {
-      from {
-        transform: translateY(40px);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .box::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      border-radius: 24px;
+      padding: 2px;
+      background: linear-gradient(90deg, gold, transparent, gold);
+      background-size: 300% 300%;
+      animation: borderMove 4s linear infinite;
+      z-index: -1;
     }
 
-    /* Smaller + Higher Logo */
-    .box img {
+    @keyframes borderMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .logo {
+      width: 60px;
+      margin: 0 auto 18px;
       display: block;
-      width: 65px;              /* Smaller size */
-      margin: -20px auto 20px auto; /* Moves logo slightly up */
       filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
-      transition: transform 0.3s ease;
-    }
-
-    .box img:hover {
-      transform: scale(1.07);
     }
 
     h2 {
-      margin: 10px 0;
+      font-size: 22px;
+      margin: 10px 0 15px;
     }
 
     .rating {
       color: gold;
-      margin-bottom: 15px;
       font-size: 14px;
-      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
 
     .btn-group {
-      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     button {
-      padding: 13px 24px;
-      margin: 8px;
-      border-radius: 30px;
+      padding: 15px;
+      border-radius: 35px;
       border: none;
       font-size: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
     }
 
     .review {
       background: linear-gradient(45deg, gold, #ffd700);
       color: black;
-      box-shadow: 0 0 10px rgba(255,215,0,0.6);
-    }
-
-    .review:hover {
-      box-shadow: 0 0 25px rgba(255,215,0,1);
-      transform: scale(1.08);
+      box-shadow: 0 0 18px rgba(255,215,0,0.7);
     }
 
     .tutorial {
       background: linear-gradient(45deg, #00c3ff, #0072ff);
       color: white;
-      box-shadow: 0 0 10px rgba(0,195,255,0.5);
-    }
-
-    .tutorial:hover {
-      box-shadow: 0 0 20px rgba(0,195,255,1);
-      transform: scale(1.08);
+      box-shadow: 0 0 15px rgba(0,195,255,0.7);
     }
 
     .continue {
       background: linear-gradient(45deg, #00ff99, #00cc66);
       color: black;
       display: none;
-      margin-top: 20px;
-      box-shadow: 0 0 10px rgba(0,255,153,0.6);
+      box-shadow: 0 0 15px rgba(0,255,153,0.7);
     }
 
-    .continue:hover {
-      box-shadow: 0 0 20px rgba(0,255,153,1);
-      transform: scale(1.08);
+    /* Floating Buttons Container */
+    .float-buttons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .float-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      transition: 0.3s;
+    }
+
+    .float-btn img {
+      width: 30px;
+      height: 30px;
+    }
+
+    /* WhatsApp Pulse Animation */
+    .whatsapp {
+      background: #25D366;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+    }
+
+    .instagram {
+      background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1);
     }
 
   </style>
@@ -129,7 +161,7 @@
 
 <div class="box">
 
-  <img src="logo.png" alt="R2K Logo">
+  <img src="logo.png" class="logo">
 
   <h2>Welcome to R2K Photography 📸</h2>
 
@@ -142,11 +174,25 @@
   <div class="btn-group">
     <button class="review" onclick="openReview()">Give Review</button>
     <button class="tutorial" onclick="openTutorial()">Watch Tutorial</button>
+    <button class="continue" id="continueBtn" onclick="goNext()">Continue ➜</button>
   </div>
 
-  <button class="continue" id="continueBtn" onclick="goNext()">
-    Continue ➜
-  </button>
+</div>
+
+<!-- Floating Buttons -->
+<div class="float-buttons">
+
+  <!-- WhatsApp with Auto Message -->
+  <a href="https://wa.me/919003771199?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
+     class="float-btn whatsapp" target="_blank">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://instagram.com/your_instagram_username"
+     class="float-btn instagram" target="_blank">
+     <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
+  </a>
 
 </div>
 
@@ -169,7 +215,7 @@
 
   window.addEventListener("focus", function() {
     if (reviewClicked) {
-      document.getElementById("continueBtn").style.display = "inline-block";
+      document.getElementById("continueBtn").style.display = "block";
     }
   });
 
