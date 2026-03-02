@@ -8,7 +8,6 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #000;
       color: white;
       display: flex;
       justify-content: center;
@@ -16,35 +15,36 @@
       min-height: 100vh;
       padding: 20px;
       text-align: center;
+      overflow: hidden;
+      background: #000;
     }
 
-    /* Animated Gold Border */
+    /* Moving Gold Glow Background */
+    body::before {
+      content: "";
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.25), transparent 40%),
+                  radial-gradient(circle at 70% 70%, rgba(255,215,0,0.15), transparent 40%);
+      animation: moveGlow 12s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveGlow {
+      0% { transform: translate(0,0); }
+      50% { transform: translate(-10%, -10%); }
+      100% { transform: translate(0,0); }
+    }
+
     .box {
-      position: relative;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(14px);
       padding: 35px 25px;
       border-radius: 22px;
       width: 100%;
       max-width: 420px;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(14px);
-      overflow: hidden;
-    }
-
-    .box::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      border-radius: 24px;
-      padding: 2px;
-      background: linear-gradient(90deg, gold, transparent, gold);
-      background-size: 300% 300%;
-      animation: borderMove 4s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes borderMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+      box-shadow: 0 0 40px rgba(0,0,0,0.7);
     }
 
     .logo {
@@ -107,7 +107,7 @@
       box-shadow: 0 0 15px rgba(0,255,153,0.7);
     }
 
-    /* Floating Buttons Container */
+    /* Floating Buttons */
     .float-buttons {
       position: fixed;
       bottom: 20px;
@@ -125,7 +125,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.6);
       transition: 0.3s;
     }
 
@@ -134,7 +133,6 @@
       height: 30px;
     }
 
-    /* WhatsApp Pulse Animation */
     .whatsapp {
       background: #25D366;
       animation: pulse 1.8s infinite;
@@ -179,16 +177,13 @@
 
 </div>
 
-<!-- Floating Buttons -->
 <div class="float-buttons">
 
-  <!-- WhatsApp with Auto Message -->
-  <a href="https://wa.me/919003771199?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
+  <a href="https://wa.me/9198XXXXXXXX?text=Hi%20R2K%20Photography,%20I%20am%20interested%20in%20your%20services."
      class="float-btn whatsapp" target="_blank">
      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
   </a>
 
-  <!-- Instagram -->
   <a href="https://instagram.com/your_instagram_username"
      class="float-btn instagram" target="_blank">
      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
