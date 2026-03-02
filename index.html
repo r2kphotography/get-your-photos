@@ -7,30 +7,68 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #000, #222);
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       text-align: center;
+      animation: fadeBody 1.5s ease-in-out;
+    }
+
+    @keyframes fadeBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .box {
-      background: rgba(0,0,0,0.8);
-      padding: 40px;
-      border-radius: 15px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(14px);
+      padding: 50px 40px 45px 40px;
+      border-radius: 25px;
       width: 90%;
-      max-width: 420px;
+      max-width: 430px;
+      border: 1px solid rgba(255,215,0,0.3);
+      box-shadow: 0 0 25px rgba(255,215,0,0.2);
+      animation: slideUp 1.2s ease-out;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Smaller + Higher Logo */
+    .box img {
+      display: block;
+      width: 65px;              /* Smaller size */
+      margin: -20px auto 20px auto; /* Moves logo slightly up */
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
+      transition: transform 0.3s ease;
+    }
+
+    .box img:hover {
+      transform: scale(1.07);
     }
 
     h2 {
-      margin-bottom: 10px;
+      margin: 10px 0;
     }
 
-    p {
-      font-size: 15px;
+    .rating {
+      color: gold;
+      margin-bottom: 15px;
+      font-size: 14px;
+      letter-spacing: 1px;
     }
 
     .btn-group {
@@ -38,34 +76,50 @@
     }
 
     button {
-      padding: 12px 20px;
+      padding: 13px 24px;
       margin: 8px;
-      border-radius: 25px;
+      border-radius: 30px;
       border: none;
       font-size: 15px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .review {
-      background: gold;
+      background: linear-gradient(45deg, gold, #ffd700);
       color: black;
+      box-shadow: 0 0 10px rgba(255,215,0,0.6);
+    }
+
+    .review:hover {
+      box-shadow: 0 0 25px rgba(255,215,0,1);
+      transform: scale(1.08);
     }
 
     .tutorial {
-      background: #00c3ff;
-      color: black;
+      background: linear-gradient(45deg, #00c3ff, #0072ff);
+      color: white;
+      box-shadow: 0 0 10px rgba(0,195,255,0.5);
+    }
+
+    .tutorial:hover {
+      box-shadow: 0 0 20px rgba(0,195,255,1);
+      transform: scale(1.08);
     }
 
     .continue {
-      background: #00ff99;
+      background: linear-gradient(45deg, #00ff99, #00cc66);
       color: black;
       display: none;
-      margin-top: 15px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0,255,153,0.6);
     }
 
-    button:hover {
-      transform: scale(1.05);
+    .continue:hover {
+      box-shadow: 0 0 20px rgba(0,255,153,1);
+      transform: scale(1.08);
     }
 
   </style>
@@ -74,7 +128,15 @@
 <body>
 
 <div class="box">
+
+  <img src="logo.png" alt="R2K Logo">
+
   <h2>Welcome to R2K Photography 📸</h2>
+
+  <div class="rating">
+    ⭐ 5.0 Rating | 1000+ Happy Clients
+  </div>
+
   <p>Please give us a 5 ⭐⭐⭐⭐⭐ Star Google Review to continue</p>
 
   <div class="btn-group">
@@ -82,17 +144,19 @@
     <button class="tutorial" onclick="openTutorial()">Watch Tutorial</button>
   </div>
 
-  <br>
-
   <button class="continue" id="continueBtn" onclick="goNext()">
     Continue ➜
   </button>
+
 </div>
 
 <script>
+
+  let reviewClicked = false;
+
   function openReview() {
+    reviewClicked = true;
     window.open("https://g.page/r/CSrtOdkKuR7CEBM/review", "_blank");
-    document.getElementById("continueBtn").style.display = "inline-block";
   }
 
   function openTutorial() {
@@ -102,6 +166,13 @@
   function goNext() {
     window.location.href = "https://ptml.in/hyw5/2ih9x";
   }
+
+  window.addEventListener("focus", function() {
+    if (reviewClicked) {
+      document.getElementById("continueBtn").style.display = "inline-block";
+    }
+  });
+
 </script>
 
 </body>
