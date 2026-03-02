@@ -10,7 +10,6 @@
       padding: 0;
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      background: #000;
       overflow: hidden;
     }
 
@@ -19,52 +18,48 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
       color: white;
       padding: 20px;
       box-sizing: border-box;
+
+      /* MOVING GOLD GRADIENT BACKGROUND */
+      background: linear-gradient(
+        45deg,
+        #000000,
+        #1a1400,
+        #000000,
+        #2b2100,
+        #000000
+      );
+      background-size: 400% 400%;
+      animation: goldMove 12s ease infinite;
     }
 
-    /* FIXED MOVING GOLD BACKGROUND */
-    body::before {
-      content: "";
-      position: fixed;
-      width: 200%;
-      height: 200%;
-      top: -50%;
-      left: -50%;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,215,0,0.35), transparent 40%),
-        radial-gradient(circle at 70% 70%, rgba(255,215,0,0.25), transparent 40%);
-      animation: moveGlow 12s ease-in-out infinite alternate;
-      z-index: -1;
-    }
-
-    @keyframes moveGlow {
-      0% { transform: translate(0%, 0%); }
-      100% { transform: translate(-10%, -10%); }
+    @keyframes goldMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .box {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(14px);
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
       padding: 35px 25px;
       border-radius: 22px;
       width: 100%;
       max-width: 420px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.7);
       text-align: center;
     }
 
     .logo {
       width: 60px;
       margin-bottom: 18px;
-      filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
+      filter: drop-shadow(0 0 8px gold);
     }
 
     h2 {
       font-size: 22px;
-      margin: 10px 0 15px;
+      margin-bottom: 15px;
     }
 
     .rating {
@@ -75,7 +70,6 @@
 
     p {
       font-size: 14px;
-      line-height: 1.6;
       margin-bottom: 25px;
     }
 
@@ -92,71 +86,54 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
       width: 100%;
     }
 
     .review {
-      background: linear-gradient(45deg, gold, #ffd700);
+      background: gold;
       color: black;
-      box-shadow: 0 0 18px rgba(255,215,0,0.7);
     }
 
     .tutorial {
-      background: linear-gradient(45deg, #00c3ff, #0072ff);
+      background: #0072ff;
       color: white;
-      box-shadow: 0 0 15px rgba(0,195,255,0.7);
     }
 
     .continue {
-      background: linear-gradient(45deg, #00ff99, #00cc66);
+      background: #00cc66;
       color: black;
       display: none;
-      box-shadow: 0 0 15px rgba(0,255,153,0.7);
     }
 
-    /* TOP RIGHT BUTTONS */
+    /* Top Right Icons */
     .float-buttons {
       position: fixed;
       top: 20px;
       right: 20px;
       display: flex;
       gap: 12px;
-      z-index: 1000;
     }
 
     .float-btn {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: 0.3s;
     }
 
     .float-btn img {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
     }
 
     .whatsapp {
       background: #25D366;
-      animation: pulse 1.8s infinite;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
-      70% { box-shadow: 0 0 0 14px rgba(37,211,102,0); }
-      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
     }
 
     .instagram {
-      background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf);
-    }
-
-    .float-btn:hover {
-      transform: scale(1.1);
+      background: #d62976;
     }
 
   </style>
