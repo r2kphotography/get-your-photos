@@ -11,35 +11,38 @@
       height: 100%;
       font-family: 'Segoe UI', sans-serif;
       background: #000;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     body {
+      min-height: 100dvh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100dvh; /* prevents mobile shifting */
       position: relative;
       color: white;
       padding: 20px;
       box-sizing: border-box;
     }
 
-    /* Moving Gold Background */
+    /* FIXED MOVING GOLD BACKGROUND */
     body::before {
       content: "";
       position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,215,0,0.25), transparent 40%),
-                  radial-gradient(circle at 70% 70%, rgba(255,215,0,0.15), transparent 40%);
-      animation: moveGlow 14s linear infinite;
+      width: 200%;
+      height: 200%;
+      top: -50%;
+      left: -50%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,215,0,0.35), transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(255,215,0,0.25), transparent 40%);
+      animation: moveGlow 12s ease-in-out infinite alternate;
       z-index: -1;
     }
 
     @keyframes moveGlow {
-      0% { transform: translate(0,0); }
-      50% { transform: translate(-8%, -8%); }
-      100% { transform: translate(0,0); }
+      0% { transform: translate(0%, 0%); }
+      100% { transform: translate(-10%, -10%); }
     }
 
     .box {
@@ -55,8 +58,7 @@
 
     .logo {
       width: 60px;
-      margin: 0 auto 18px;
-      display: block;
+      margin-bottom: 18px;
       filter: drop-shadow(0 0 8px rgba(255,215,0,0.6));
     }
 
@@ -113,7 +115,7 @@
       box-shadow: 0 0 15px rgba(0,255,153,0.7);
     }
 
-    /* Top Right Floating Buttons */
+    /* TOP RIGHT BUTTONS */
     .float-buttons {
       position: fixed;
       top: 20px;
